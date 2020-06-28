@@ -3,6 +3,7 @@ package com.ripple.dialog.widget.impl
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
 import androidx.fragment.app.FragmentActivity
@@ -58,9 +59,13 @@ class RippleDialogFragment : IRippleDialogFragment {
     }
 
     override fun showCenter() {
+        dialogConfig?.gravity = Gravity.CENTER
+        show()
     }
 
     override fun showBottom() {
+        dialogConfig?.gravity = Gravity.BOTTOM
+        show()
     }
 
 
@@ -69,14 +74,17 @@ class RippleDialogFragment : IRippleDialogFragment {
     }
 
     override fun setGravity(gravity: Int): IRippleBaseDialog {
+        dialogConfig?.gravity = gravity
         return this
     }
 
     override fun setCancel(isCancel: Boolean): IRippleBaseDialog {
+        dialogConfig?.isCancel = isCancel
         return this
     }
 
     override fun setAnimation(animation: Int): IRippleBaseDialog {
+        dialogConfig?.animation = animation
         return this
     }
 
