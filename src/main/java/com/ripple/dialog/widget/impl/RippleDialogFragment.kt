@@ -33,7 +33,6 @@ class RippleDialogFragment : IRippleDialogFragment {
 
     private var onBackPressListener: RippleDialogInterface.OnBackPressListener? = null
 
-
     constructor(context: Context, view: View) {
         this.context = context
         this.dialogConfig = RippleDialogConfig.Builder()
@@ -52,7 +51,10 @@ class RippleDialogFragment : IRippleDialogFragment {
         contentView = this.dialogConfig!!.contentView
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun setOnActivityResult(onActivityResult: RippleDialogInterface.OnActivityResult) {
+        baseDialogFragment?.onActivityResult = { first: Int?, second: Int?, third: Intent? ->
+            onActivityResult.onActivityResult(first, second, third)
+        }
     }
 
     override fun getId(): Int {

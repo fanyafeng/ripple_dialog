@@ -3,6 +3,7 @@ package com.ripple.dialog.widget
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.*
@@ -10,6 +11,7 @@ import androidx.fragment.app.DialogFragment
 import com.ripple.dialog.callback.RippleDialogInterface
 import com.ripple.dialog.config.RippleDialogConfig
 import com.ripple.tool.judge.checkNotNullRipple
+import com.ripple.tool.kttypelians.TripleLambda
 import com.ripple.tool.kttypelians.UnitLambda
 
 
@@ -64,7 +66,6 @@ class RippleBaseDialogFragment(private var dialogConfig: RippleDialogConfig) : D
             } else {
                 false
             }
-
         }
     }
 
@@ -75,7 +76,13 @@ class RippleBaseDialogFragment(private var dialogConfig: RippleDialogConfig) : D
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
         onDismissListener?.invoke()
+    }
 
+    var onActivityResult: TripleLambda<Int, Int, Intent?> = null
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        onActivityResult?.invoke(requestCode, resultCode, data)
     }
 
 
