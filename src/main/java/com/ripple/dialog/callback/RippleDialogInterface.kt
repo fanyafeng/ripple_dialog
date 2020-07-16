@@ -38,7 +38,10 @@ interface RippleDialogInterface {
         fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean
     }
 
-    interface OnActivityResult{
+    /**
+     * activity result回调
+     */
+    interface OnActivityResult {
         fun onActivityResult(requestCode: Int?, resultCode: Int?, data: Intent?)
     }
 }
